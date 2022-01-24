@@ -7,7 +7,8 @@ import {
   Output,
 } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
-
+import { v4 as uuidv4 } from 'uuid';
+import { UniqueIdService } from '../../service/unique-id.service';
 @Component({
   selector: 'app-si-no-buttons-group',
   templateUrl: './si-no-buttons-group.component.html',
@@ -28,10 +29,16 @@ export class SiNoButtonsGroupComponent implements OnInit, ControlValueAccessor {
 
   options = SiNoButtonGroupOptions;
 
+  id = '';
+
   onChange = (value: string): void => {};
   onTouched = () => {};
 
-  constructor() {}
+  constructor(private uniqueIdService: UniqueIdService) {
+    this.id = this.uniqueIdService.generateUniqueIdWithPrefix(
+      'si-no-buttons-group'
+    );
+  }
 
   ngOnInit(): void {}
 

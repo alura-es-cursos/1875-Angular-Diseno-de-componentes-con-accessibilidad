@@ -22,6 +22,7 @@ import { UniqueIdService } from '../../service/unique-id.service';
   ],
 })
 export class SiNoButtonsGroupComponent implements OnInit, ControlValueAccessor {
+  @Input() disabled = false;
   @Input() value = '';
   @Input() label = '';
 
@@ -54,6 +55,10 @@ export class SiNoButtonsGroupComponent implements OnInit, ControlValueAccessor {
 
   registerOnTouched(fn: any): void {
     this.onTouched = fn;
+  }
+
+  setDisabledState(isDisabled: boolean): void {
+    this.disabled = isDisabled;
   }
 
   activate(value: string): void {
